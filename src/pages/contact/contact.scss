@@ -1,3 +1,22 @@
 page-contact {
+    .imagem{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .nome{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .round{
+        border-radius: 100%;
+    }
 
+    #btnsair{
+        display: flex;
+        justify-content: center;
+    }
+    
 }

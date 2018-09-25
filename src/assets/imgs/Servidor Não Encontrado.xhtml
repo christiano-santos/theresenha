@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src chrome:" />
+    <title>Servidor Não Encontrado</title>
+    <link rel="stylesheet" href="Servidor%20N%C3%A3o%20Encontrado_arquivos/aboutNetError.css" type="text/css" media="all" />
+    <!-- If the location of the favicon is changed here, the FAVICON_ERRORPAGE_URL symbol in
+         toolkit/components/places/src/nsFaviconService.h should be updated. -->
+    <link rel="icon" type="image/png" id="favicon" href="chrome://global/skin/icons/warning-16.png" />
+  </head>
+
+  <body dir="ltr" class="illustrated dnsNotFound neterror">
+    <!-- ERROR ITEM CONTAINER (removed during loading to avoid bug 39098) -->
+    
+
+    <!-- PAGE CONTAINER (for styling purposes only) -->
+    <div id="errorPageContainer" class="container">
+      <div id="text-container">
+        <!-- Error Title -->
+        <div class="title">
+          <h1 class="title-text">Hmm. Estamos tendo problemas para encontrar este site.</h1>
+        </div>
+
+        <!-- LONG CONTENT (the section most likely to require scrolling) -->
+        <div id="errorLongContent">
+
+          <!-- Short Description -->
+          <div id="errorShortDesc">
+            <p id="errorShortDescText">Não podemos conectar ao servidor em pt.activerecord.errors.models.user.attributes.</p>
+          </div>
+          <p id="badStsCertExplanation" hidden="true">Este site usa HTTP
+Strict Transport Security (HSTS) para especificar que o Firefox só pode se conectar
+a ele com segurança. Como resultado, não é possível adicionar uma exceção para este
+certificado.</p>
+
+          <div id="wrongSystemTimePanel">
+            <p>Firefox não se conectou ao domínio <span id="wrongSystemTime_URL"></span> porque o relógio do seu computador parece estar errado e isso impede uma conexão segura.</p> <p>O seu relógio marca <span id="wrongSystemTime_systemDate"></span>, quando na verdade deveria ser <span id="wrongSystemTime_actualDate"></span>. Para corrigir este problema, ajuste suas configurações de data e hora.</p>
+          </div>
+
+          <div id="wrongSystemTimeWithoutReferencePanel">
+            <p>Firefox não se conectou ao domínio <span id="wrongSystemTimeWithoutReference_URL"></span> porque o relógio do seu computador parece estar errado e isso impede uma conexão segura.</p> <p>O seu relógio marca <span id="wrongSystemTimeWithoutReference_systemDate"></span>. Para corrigir este problema, ajuste suas configurações de data e hora.</p>
+          </div>
+
+          <!-- Long Description (Note: See netError.dtd for used XHTML tags) -->
+          <div id="errorLongDesc"><strong xmlns="http://www.w3.org/1999/xhtml">Se este endereço estiver correto, aqui estão outras coisas que você pode tentar:</strong>
+<ul xmlns="http://www.w3.org/1999/xhtml">
+  
+  <li>Tente novamente mais tarde.</li>
+  
+  <li>Verifique sua conexão de rede.</li>
+  
+  <li>Se você está conectado atrás de um firewall, verifique se o Firefox tem permissão para acessar a Web.</li>
+</ul></div>
+
+          <div id="learnMoreContainer">
+            <p><a href="https://support.mozilla.org/kb/what-does-your-connection-is-not-secure-mean" id="learnMoreLink" target="new">Saiba mais…</a></p>
+          </div>
+        </div>
+
+        <!-- UI for option to report certificate errors to Mozilla. Removed on
+             init for other error types .-->
+        <div id="certificateErrorReporting">
+          <p class="toggle-container-with-text">
+            <input id="automaticallyReportInFuture" role="checkbox" type="checkbox" />
+            <label for="automaticallyReportInFuture" id="automaticallyReportInFuture">Relatar erros como este para ajudar a Mozilla a identificar e bloquear sites maliciosos</label>
+          </p>
+        </div>
+
+        <div id="prefChangeContainer" class="button-container">
+          <p>Parece que suas configurações de segurança de rede podem estar causando isso. Você quer restaurar as configurações padrão?</p>
+          <button id="prefResetButton" class="primary" autocomplete="off">Restaurar configurações padrão</button>
+        </div>
+
+        <div id="certErrorAndCaptivePortalButtonContainer" class="button-container">
+          <button id="returnButton" class="primary" autocomplete="off">Voltar</button>
+          <button id="openPortalLoginPageButton" class="primary" autocomplete="off">Abrir página de acesso a rede</button>
+          <button id="advancedButton" autocomplete="off">Avançado</button>
+        </div>
+      </div>
+
+      <div id="netErrorButtonContainer" class="button-container"><button id="errorTryAgain" class="primary" autocomplete="off" autofocus="true">Tentar de novo</button>
+        
+      </div>
+
+      <div id="advancedPanelContainer">
+        <div id="badCertAdvancedPanel" class="advanced-panel">
+          <p id="badCertTechnicalInfo"></p>
+          <div class="exceptionDialogButtonContainer">
+            <button id="exceptionDialogButton">Adicionar exceção…</button>
+          </div>
+        </div>
+
+        <div id="certificateErrorDebugInformation">
+          <button id="copyToClipboard">Copiar texto para a área de transferência</button>
+          <div id="certificateErrorText"></div>
+          <button id="copyToClipboard">Copiar texto para a área de transferência</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="application/javascript" src="Servidor%20N%C3%A3o%20Encontrado_arquivos/aboutNetError.js"></script>
+</html>

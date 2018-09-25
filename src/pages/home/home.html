@@ -1,17 +1,60 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="sky_blue">
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <div color="sky_blue">
+    <h3>Todos os Eventos</h3>
+  </div>
+    <ion-card>
+        <img src="../../assets/imgs/nin-live.png"/>
+        <ion-card-content>
+          <ion-card-title>
+            Nine Inch Nails Live
+            </ion-card-title>
+          <p>
+            The most popular industrial group ever, and largely
+            responsible for bringing the music to a mass audience.
+          </p>
+        </ion-card-content>
+      </ion-card>
+   <ion-menu [content]="content">
+    
+      <ion-header color="primary">
+        <ion-toolbar>
+          <ion-title>Eventos</ion-title>
+        </ion-toolbar>
+      </ion-header>
+  
+      <ion-content class="menu">
+        <ion-list>
+          <button ion-item (click)="openPage(homePage)" class="menu_itens">
+            Bar
+          </button>
+          <button ion-item (click)="openPage(homePage)" class="menu_itens">
+              Restaurante
+          </button>
+          <button ion-item (click)="openPage(friendsPage)" class="menu_itens">
+            Teatro
+          </button>
+          <button ion-item (click)="openPage(eventsPage)" class="menu_itens">
+            Cinema
+          </button>
+          <button ion-item (click)="closeMenu()" class="menu_itens">
+            Shows
+          </button>
+          <button ion-item (click)="closeMenu()" class="menu_itens">
+            Sobre
+          </button>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    
+    <ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+
 </ion-content>

@@ -1,0 +1,47 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div class="cadastrar">
+    <h2>Cadastre-se</h2>
+  </div>
+  <form [formGroup]="createForm" (ngSubmit)="criaUsuario(); $event.preventDefault()">
+      <ion-list>
+
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-icon name="mail" item-right></ion-icon>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Nome</ion-label>
+            <ion-icon name="contact" item-right></ion-icon>
+            <ion-input type="text" formControlName="name"></ion-input>
+          </ion-item>
+      
+        <ion-item>
+          <ion-label floating>Senha</ion-label>
+          <ion-icon name="key" item-right></ion-icon>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>Confirmar Senha</ion-label>
+            <ion-icon name="repeat" item-right></ion-icon>
+            <ion-input type="password" formControlName="password_confirmation"></ion-input>
+          </ion-item>
+      
+      </ion-list>
+
+      <button class="botao" ion-button block color="secondary" type="submit" [disabled]="createForm.invalid">Cadastrar</button>
+  </form>
+</ion-content>

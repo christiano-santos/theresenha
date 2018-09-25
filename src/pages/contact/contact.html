@@ -1,17 +1,37 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Perfil
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+<ion-content padding>
+    <div class="imagem">  
+      <ion-avatar>
+          <img class="round" [src]= "user.avatar" alt="usuario">
+          <!--<img class="round" [src]="user.avatar" alt="usuario">-->
+          <!--<img class="round" [src]="domSanitizer.bypassSecurityTrustUrl(user.avatar)" alt="usuario">-->
+          <!--<img class="round" [src]="user.avatar || '../../assets/imgs/user.png'" alt="usuario">-->
+      </ion-avatar>    
+    </div>
+  
+  <div class="nome">
+    <h3>{{user.name}}</h3> 
+    <button ion-button color="danger" round icon-start (click)="sair()">
+      <ion-icon name='exit'></ion-icon>
+      Sair
+    </button>
+  </div>
+ 
+  <ion-fab right bottom>
+      <button ion-fab color="primary"><ion-icon name="arrow-dropleft"></ion-icon></button>
+      <ion-fab-list side="left">
+        <button ion-fab (click)="presentModal()"><ion-icon name="create"></ion-icon></button>
+        <button ion-fab (click)="senhaModal()"><ion-icon name="key"></ion-icon></button>
+        <button ion-fab (click)="fotoModal()"><ion-icon name="image"></ion-icon></button>
+        <button ion-fab (click)="cameraModal()"><ion-icon name="camera"></ion-icon></button>
+      </ion-fab-list>
+  </ion-fab>
+   
 </ion-content>

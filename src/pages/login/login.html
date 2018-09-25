@@ -1,0 +1,26 @@
+
+<ion-content padding class="corFUndo">
+  <div class="bemvindo">
+    <h2>Bem Vindo</h2>
+    </div>
+  <form [formGroup]="loginForm" (ngSubmit)="login(); $event.preventDefault()">
+    <ion-list>    
+      <ion-item class="corFUndo">
+        <ion-label floating>Email</ion-label>
+        <ion-icon name="mail" item-right></ion-icon>
+        <ion-input type="text" formControlName="email" ></ion-input>
+      </ion-item>
+    
+      <ion-item class="corFUndo">
+        <ion-label floating>Senha</ion-label>
+        <ion-icon name="key" item-right></ion-icon>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+    
+    </ion-list>
+
+    <button class="botao" ion-button block round type="submit" [disabled]="loginForm.invalid">entrar</button>
+
+  </form>
+  <button class="botao" ion-button block round color="danger" (click)="cadastrarUser()">Cadastre-se</button>
+</ion-content>

@@ -10,6 +10,21 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { LoginPageModule } from '../pages/login/login.module';
+import { NewUserPageModule } from '../pages/new-user/new-user.module';
+import { EditaUserPageModule } from '../pages/edita-user/edita-user.module';
+import { AlterarSenhaPageModule } from '../pages/alterar-senha/alterar-senha.module';
+import { PhotoLibrary } from '@ionic-native/photo-library';
+import { Camera } from '@ionic-native/camera';
+import { UserDataProvider } from '../providers/user-data/user-data';
+import { ApiRequestsProvider } from '../providers/api-requests/api-requests';
+import { AppPreferences } from '@ionic-native/app-preferences';
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +36,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    LoginPageModule,
+    NewUserPageModule,
+    EditaUserPageModule,
+    AlterarSenhaPageModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot({
+      name: '__localuser',
+      storeName: 'user',
+      driverOrder: ['sqlite', 'indexeddb', 'webswl', 'localstorage']
+    })
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +60,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PhotoLibrary,
+    Camera,
+    UserDataProvider,
+    ApiRequestsProvider,
+    AppPreferences,
+    NativePageTransitions
+    
+ 
   ]
 })
 export class AppModule {}

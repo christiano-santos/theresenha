@@ -38,7 +38,12 @@ $colors: (
   secondary:  #32db64,
   danger:     #f53d3d,
   light:      #f4f4f4,
-  dark:       #222
+  dark:       #222,
+  silk:       #dcd0c0,
+  pale_gold:  #c0b283,
+  clean:      #a7d2cb,
+  orchid:     #841983,
+  sky_blue:   #328cc1
 );
 
 
@@ -86,3 +91,4 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+

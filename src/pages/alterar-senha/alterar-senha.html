@@ -1,0 +1,53 @@
+<!--
+  Generated template for the AlterarSenhaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-toolbar>
+    <ion-title>
+      Alterar Senha
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="fechar()">
+        <ion-icon name="md-close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <div class="imagem">
+        <img src="../../assets/imgs/user.png" alt="usuario">
+    </div>
+
+    <form [formGroup]="passwordForm" (ngSubmit)="alteraSenha(); $event.preventDefault()">
+
+      <ion-list>
+
+          <ion-item>
+            <ion-label floating>Senha Atual</ion-label>
+            <ion-input type="password" formControlName="current_password"></ion-input>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label floating>Nova Senha</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+
+          <ion-item>
+              <ion-label floating>Confirma Senha</ion-label>
+              <ion-input type="password" formControlName="password_confirmation"></ion-input>
+          </ion-item>
+        
+        </ion-list>
+    <button ion-button block color="secondary" type="submit" [disabled]="passwordForm.invalid">Salvar</button>
+
+  </form>
+
+</ion-content>
