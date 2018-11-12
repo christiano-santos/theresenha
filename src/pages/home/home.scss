@@ -1,4 +1,14 @@
 page-home {
+   
+    .headfixo{
+        position: fixed;
+        // z-index: 1;
+    }
+
+    .conteudo{
+        position: absolute;
+        // z-index: 2;
+    }
     .titulo{
         background-color: #a7d2cb;
     }

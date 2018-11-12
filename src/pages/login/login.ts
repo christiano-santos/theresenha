@@ -93,24 +93,8 @@ export class LoginPage {
       this.user.name = result.body.data.name;
       this.user.id = result.body.data.id;
       this.user.avatar = this.API_URL+result.body.data.avatar.url;
-      // if(this.user.avatar){
-      //   this.apiRequestsProvider.getPhoto(this.user).then((res)=>{
-      //     const result = res['body']['imageb64'];
-      //     this.user.avatar = 'data:image/jpeg;base64, '+result;
-      //    // this.user.avatar = `${this.domSanitizer.bypassSecurityTrustResourceUrl(this.user.avatar)}`;
-      //    // this.user.token = res.headers.get('access-token');
-      //    console.log(res.headers.get('access-token'));
-      //     this.useData.save(this.user);
-      //    }).catch((err)=>{
-      //      console.log("Erro ao baixar foto do usuário")
-      //      console.log(err)
-      //    });
-      // }else{
-      //   console.log("Não entrou na promisse")
-      // }
       this.user.password = "";
       console.log(this.user);
-      console.log(this.user.avatar)
       this.useData.save(this.user);
       this.transition();    
       this.navCtrl.setRoot(TabsPage);

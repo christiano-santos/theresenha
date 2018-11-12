@@ -1,0 +1,30 @@
+<ion-header>
+    <ion-navbar color="sky_blue">
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+      <ion-title>Shows</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding color="silver">
+    <ion-card *ngFor="let ad of lista_anuncios">
+      <ion-card-content>  
+        <ion-card-title>
+        {{ad.establishment}}
+        <br>
+        <h6>
+        {{ ad.created_at | date:"EEEE" | translate}} {{ad.created_at | date:", d 'de' "}} {{ ad.created_at | date:"MMMM" | translate}} {{ad.created_at | date:" 'de' y"}} 
+        <!-- {{ translate | ad.created_at | date:"EEEE, d 'de' MMMM 'de' y"}} -->
+        </h6>
+        </ion-card-title>
+        <img [src]= "'http://192.168.1.5:3000'+ad.image.url" >
+          <br>
+          <p>
+            {{ad.description}}
+          </p>
+      </ion-card-content>
+    </ion-card>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

@@ -47,15 +47,9 @@ export class NewUserPage {
     this.load.dismissAll();
   }
   criaUsuario(){
-    // this.userForm = this.createForm.value
-    // this.user.email = this.userForm.email;
-    // this.user.name = this.userForm.name;
-    // this.user.password = this.userForm.password;
-    // this.user.password_confirmation = this.userForm.password_confirmation;
     this.user = this.createForm.value
     this.createForm.reset();
     console.log(this.user);
-   
     this.presentLoading();
     this.apiRequestsProvider.createUser(this.user).then((result: any)=>{
       this.toast.create({ message: 'Usuário criado com sucesso!', position: 'botton', duration: 3000 }).present();

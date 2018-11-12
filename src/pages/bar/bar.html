@@ -3,41 +3,16 @@
       <button ion-button icon-only menuToggle>
           <ion-icon name="menu"></ion-icon>
       </button>
-    <ion-title>Todos os Eventos</ion-title>
+    <ion-title>Bares</ion-title>
   </ion-navbar>
 </ion-header>
-
-<ion-menu [content]="content" > 
-    <ion-header color="primary">
-      <ion-toolbar>
-        <ion-title>Eventos</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content class="menu">
-      <ion-list>
-        <button ion-item (click)="filtraBar()" class="menu_itens">
-          Bar
-        </button>
-        <button ion-item (click)="filtraRestaurante()" class="menu_itens">
-          Restaurante
-        </button>
-        <button ion-item (click)="filtraShow()" class="menu_itens">
-          Shows
-        </button>
-      </ion-list>
-    </ion-content>
-</ion-menu>
-<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
-
-<ion-content padding color="silver">
+  <ion-content padding color="silver">
       <ion-card *ngFor="let ad of lista_anuncios">
         <ion-card-content>  
           <ion-card-title>
           {{ad.establishment}}
           <br>
           <h6>
-          publicado em
-          <br>
           {{ ad.created_at | date:"EEEE" | translate}} {{ad.created_at | date:", d 'de' "}} {{ ad.created_at | date:"MMMM" | translate}} {{ad.created_at | date:" 'de' y"}} 
           <!-- {{ translate | ad.created_at | date:"EEEE, d 'de' MMMM 'de' y"}} -->
           </h6>
@@ -46,11 +21,11 @@
             <br>
             <p>
               {{ad.description}}
-              <!-- <a>Ler mais...</a>             -->
             </p>
         </ion-card-content>
       </ion-card>
       <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
-      </ion-infinite-scroll>  
-</ion-content>
+      </ion-infinite-scroll>
+  </ion-content>
+  

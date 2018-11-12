@@ -1,25 +1,19 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController  } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ApiRequestsProvider } from '../../providers/api-requests/api-requests';
 import { UserDataProvider } from '../../providers/user-data/user-data';
 import { User } from '../../models/user';
-import { BarPage } from '../bar/bar';
-import { ShowsPage } from '../shows/shows';
-import { RestaurantePage } from '../restaurante/restaurante';
 
-
-
-
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-restaurante',
+  templateUrl: 'restaurante.html',
   providers: [
     ApiRequestsProvider,
     UserDataProvider
   ]
 })
-export class HomePage {
-
+export class RestaurantePage {
   public user = new User();
   public lista_anuncios = new Array<any>();
   public API_URL = 'http://localhost:3000';
@@ -28,27 +22,40 @@ export class HomePage {
   public infinitescroll;
 
   constructor(public navCtrl: NavController,
-    public apiProvider: ApiRequestsProvider,
-    public userData: UserDataProvider,
-    public loadingCtrl: LoadingController,
-   ) {
-
+     public navParams: NavParams,
+     public apiProvider: ApiRequestsProvider,
+     public userData: UserDataProvider,
+     public loadingCtrl: LoadingController,) {
   }
 
-  ionViewDidEnter(){
+  ionViewDidLoad() {
     console.log("Chamando Pega Anuncio")
     this.pegaAnuncio()
   }
+
   doInfinite(infiniteScroll) {
     this.page++;
     this.infinitescroll = infiniteScroll;
     this.pegaAnuncio(true);
   }
+
+  presentLoading(){
+    this.load = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: 'Favor Aguarde....'
+    })
+    this.load.present();
+  }
+  noPresentLoading(){
+    this.load.dismissAll();
+  }
+
   pegaAnuncio(novaPagina: boolean = false){
+    
     this.presentLoading();
     this.userData.get().then(user=>{
       this.user = user
-      this.apiProvider.getAds(this.user, this.page).then((result: any) => {
+      this.apiProvider.getRestaurante(this.user, this.page).then((result: any) => {
         if (novaPagina) {
           this.lista_anuncios = this.lista_anuncios.concat(result.body);
           this.infinitescroll.complete();
@@ -66,28 +73,7 @@ export class HomePage {
      }).catch(err=>{
        this.noPresentLoading();
        console.log(err)
-     }) 
+     })
+    
   }
-
-  presentLoading(){
-    this.load = this.loadingCtrl.create({
-      spinner: 'dots',
-      content: 'Favor Aguarde....'
-    })
-    this.load.present();
-  }
-  noPresentLoading(){
-    this.load.dismissAll();
-  }
-  
-  filtraBar(){
-    this.navCtrl.push(BarPage);
-  }
-
-  filtraRestaurante(){
-    this.navCtrl.push(RestaurantePage);
-  }
-  filtraShow(){
-    this.navCtrl.push(ShowsPage);
-   }
 }

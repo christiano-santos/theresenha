@@ -67,12 +67,6 @@ export class ContactPage {
     let options: NativeTransitionOptions = {
         direction: 'up',
         duration: 600,
-        // slowdownfactor: 3,
-        // slidePixels: 20,
-        // iosdelay: 100,
-        // androiddelay: 150,
-        // fixedPixelsTop: 0,
-        // fixedPixelsBottom: 60
        };
     this.nativePageTransitions.flip(options);
   }
@@ -88,16 +82,13 @@ export class ContactPage {
       targetHeight:250,
       targetWidth:250
     }
-      
     this.camera.getPicture(options).then((imageData) => {
      this.user.avatar = 'data:image/jpeg;base64,' + imageData;
-     this.auteraFoto();
+     this.alteraFoto();
      }, (err) => {
       console.log(err);
      });
-     
   }
-
   fotoModal(){
     const options: CameraOptions = {
       quality: 100,
@@ -107,19 +98,18 @@ export class ContactPage {
       allowEdit:true,
       targetHeight:250,
       targetWidth:250
-    }
-      
+    }   
     this.camera.getPicture(options).then((imageData) => {
       this.user.avatar = 'data:image/jpeg;base64,' + imageData;
-      this.auteraFoto();
+      this.alteraFoto();
      }, (err) => {
       console.log(err);
      });
   }
 
-   auteraFoto(){
+   alteraFoto(){
      this.apiRequest.changePhoto(this.user).then(res =>{
-       this.toast.create({message: 'Fofto alterada!', position: 'botton', duration: 3000}).present(); 
+       this.toast.create({message: 'Foto alterada!', position: 'botton', duration: 3000}).present(); 
        this.user.token = res.headers.get('access-token');
        this.userData.save(this.user);
      }).catch((err) => {
@@ -145,9 +135,6 @@ export class ContactPage {
       this.toast.create({message: 'Logout...', position: 'botton', duration: 3000}).present();
       console.log(res);
       this.userData.delete();
-     // this.navCtrl.push(LoginPage);
-     // this.appCtrl.getRootNavs()[0];
-     //this.navCtrl.setRoot(LoginPage)
      this.transition();
      this.appCtrl.getRootNav().setRoot(LoginPage);
       this.noPresentLoading();

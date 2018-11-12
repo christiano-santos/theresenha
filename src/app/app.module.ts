@@ -19,12 +19,23 @@ import { Camera } from '@ionic-native/camera';
 import { UserDataProvider } from '../providers/user-data/user-data';
 import { ApiRequestsProvider } from '../providers/api-requests/api-requests';
 import { AppPreferences } from '@ionic-native/app-preferences';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { NativePageTransitions } from '@ionic-native/native-page-transitions';
+import { Globalization } from '@ionic-native/globalization';
+import { TranslateModule, TranslateLoader, TranslateService} from "@ngx-translate/core";
+import { TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { Platform } from 'ionic-angular';
+import { BarPage } from '../pages/bar/bar';
+import { RestaurantePage } from '../pages/restaurante/restaurante';
+import { ShowsPage } from '../pages/shows/shows';
 
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/','.json');
+}
 
+export const DEFAULT_LANGUAGE = 'pt-br';
 
 @NgModule({
   declarations: [
@@ -32,10 +43,20 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    BarPage,
+    RestaurantePage,
+    ShowsPage
   ],
   imports: [
     BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+  }),
     IonicModule.forRoot(MyApp),
     LoginPageModule,
     NewUserPageModule,
@@ -55,11 +76,15 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    BarPage,
+    RestaurantePage,
+    ShowsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    Globalization,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PhotoLibrary,
     Camera,
@@ -71,4 +96,23 @@ import { NativePageTransitions } from '@ionic-native/native-page-transitions';
  
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(platform: Platform, translate: TranslateService, private globalization: Globalization) {
+
+    platform.ready().then( () => {
+
+        translate.setDefaultLang(DEFAULT_LANGUAGE);
+
+        if ((<any>window).cordova) {
+            this.globalization.getPreferredLanguage().then( result => {
+                translate.use(result.value.toLowerCase());
+            });
+        } else {
+            let browserLanguage = translate.getBrowserLang() || DEFAULT_LANGUAGE;
+            translate.use(browserLanguage.toLowerCase());
+        }
+
+    });
+
+}
+}
